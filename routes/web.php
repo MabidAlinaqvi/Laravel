@@ -24,6 +24,7 @@ use App\Http\Controllers\CheckingStub;
 use App\Http\Controllers\BindingModel;
 use App\Http\Controllers\MultipleDB;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -168,3 +169,5 @@ Route::controller(GroupController::class)->group(function(){
     Route::get('productupdate','productUpdate');
     Route::get('productadd','addProduct');
 });
+
+Route::get('onetoone',[CustomerController::class,'index']);
