@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetDataController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FileUploadApiController;
+
 
 
 /*
@@ -40,3 +42,5 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 });
 
 Route::post("login",[UsersController::class,'index']);
+
+Route::post('fileupload',[FileUploadApiController::class,"index"]);
