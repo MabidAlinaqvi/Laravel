@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetDataController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UsersController;
 
 
 /*
@@ -21,16 +22,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('getdata',[GetDataController::class,'getData']);
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    
+    Route::get('getdata',[GetDataController::class,'getData']);
 
-Route::post('setdata',[GetDataController::class,'setData']);
+    Route::post('setdata',[GetDataController::class,'setData']);
 
-Route::put('updatedata',[GetDataController::class,'updateData']);
+    Route::put('updatedata',[GetDataController::class,'updateData']);
 
-Route::delete('deletedata/{id}',[GetDataController::class,'deleteData']);
+    Route::delete('deletedata/{id}',[GetDataController::class,'deleteData']);
 
-Route::get('searchdata/{city}',[GetDataController::class,'searchData']);
+    Route::get('searchdata/{city}',[GetDataController::class,'searchData']);
 
-Route::put('validatedata',[GetDataController::class,'validateData']);
+    Route::put('validatedata',[GetDataController::class,'validateData']);
 
-Route::apiResource('testresource',TestController::class);
+    Route::apiResource('testresource',TestController::class);
+});
+
+Route::post("login",[UsersController::class,'index']);
