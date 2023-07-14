@@ -10,7 +10,8 @@ class FileUploadApiController extends Controller
      //   return "hello world";
         $file = $req->file('file')->getClientOriginalName();
      //   return $file;
-        $result = $req->file('file')->storeAs('apiDocs',$file);
+     //   $result = $req->file('file')->storeAs('apiDocs',$file);
+        $result = $req->file->move(public_path('apiDocs'),$file);
         return $file." is successfully uploaded";
     }
 }
